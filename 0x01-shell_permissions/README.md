@@ -28,9 +28,9 @@ This script adds execution permission to the owner, the group owner and the othe
 ## 8-James_Bond
 This script sets the permission to the file hello as follows:
 
-*Owner: no permission at all
-*Group: no permission at all
-*Other users: all the permissions
+* Owner: no permission at all
+* Group: no permission at all
+* Other users: all the permissions
 
 ## 9-John_Doe
 This script sets the mode of the file hello to -rwxr-x-wx
