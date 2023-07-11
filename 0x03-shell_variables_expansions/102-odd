@@ -1,2 +1,2 @@
 #!/bin/bash
-sed -n '1~2p'
+grep -n "" | grep -E '^[[:digit:]]*[13579]:' | cut -d ':' -f 2-
