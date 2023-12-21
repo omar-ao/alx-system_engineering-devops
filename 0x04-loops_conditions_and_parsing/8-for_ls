@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#This script displays
+#	The content of the current directory
+#	In a list format
+file=$(ls)
+for value in $file
+do
+	echo "$value" | cut -d "-" -f 2
+done
