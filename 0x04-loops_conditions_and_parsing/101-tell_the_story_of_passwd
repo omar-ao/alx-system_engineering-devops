@@ -5,10 +5,10 @@ IFS=$'\n'
 while read -r line
 do
 	user=$(echo "$line" | cut -d ":" -f 1)
-	gang=$(echo "$line" | cut -d ":" -f 3)
+	gang=$(echo "$line" | cut -d ":" -f 4)
 	lives=$(echo "$line" | cut -d ":" -f 6)
 	rides=$(echo "$line" | cut -d ":" -f 7)
-	place=$(echo "$line" | cut -d ":" -f 4)
+	place=$(echo "$line" | cut -d ":" -f 3)
 	pass=$(echo "$line" | cut -d ":" -f 2)
 	info=$(echo "$line" | cut -d ":" -f 5)
 
