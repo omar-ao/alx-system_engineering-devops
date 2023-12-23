@@ -27,7 +27,7 @@ int main(void)
 	for (i = 0; i < 5; i++)
 	{
 		pid = fork();
-		if (pid == -1)
+		if (pid < 0)
 			exit(1);
 
 		if (pid == 0)
