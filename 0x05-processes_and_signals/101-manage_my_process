@@ -5,7 +5,7 @@
 OUT="/var/run/my_process.pid"
 
 start_script () {
-	./manage_my_process $
+	./manage_my_process &
 	echo "$!" | sudo tee "$OUT" > /dev/null
 }
 
