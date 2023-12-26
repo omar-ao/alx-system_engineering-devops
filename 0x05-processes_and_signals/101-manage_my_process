@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#This script that manages manage_my_process
+
+
+OUT="/var/run/my_process.pid"
+
+start_script () {
+	./manage_my_process $
+	echo "$!" | sudo tee "$OUT" > /dev/null
+}
+
+stop_script () {
+	pkill -f "./manage_my_process"
+	sudo rm "$OUT"
+}
+
+case $1 in
+	start)
+		start_script
+		echo "manage_my_process started"
+		;;
+	restart)
+		stop_script
+		start_script
+		echo "manage_my_process restarted"
+		;;
+	stop)
+		stop_script
+		echo "manage_my_process stopped"
+		;;
+	*)
+		echo "Usage: manage_my_process {start|stop|restart}" ;;
+esac
