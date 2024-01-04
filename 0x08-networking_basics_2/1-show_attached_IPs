@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script displays all active IPv4s on the machine it is executed on
+
+ifconfig | grep -oP '(?<=inet\s)\d+(\.\d+){3}'
