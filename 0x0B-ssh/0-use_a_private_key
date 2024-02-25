@@ -1,0 +1,9 @@
+#!/bin/bash
+
+user="ubuntu"
+ip="3.80.19.87"
+key="~/.ssh/school"
+
+ssh_cmd="ssh -o IdentityFile=$key $user@$ip"
+
+$ssh_cmd
