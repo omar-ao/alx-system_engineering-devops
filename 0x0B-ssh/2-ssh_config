@@ -1,1 +1,5 @@
-#!/usr/bin/env bash
+# cofig file
+
+Host 465573-web-01
+        IdentityFile ~/.ssh/school
+        PasswordAuthentication no
