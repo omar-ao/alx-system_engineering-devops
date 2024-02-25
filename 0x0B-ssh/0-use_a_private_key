@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
 # This script uses ssh to connect to server
 
-user="ubuntu"
-ip="3.80.19.87"
-key="~/.ssh/school"
-
-ssh_cmd="ssh -o IdentityFile=$key $user@$ip"
-
-$ssh_cmd
+ssh -i ~/.ssh/school ubuntu@3.80.19.87
