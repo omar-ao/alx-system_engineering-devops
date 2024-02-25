@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# This script uses ssh to connect to server
 
 user="ubuntu"
 ip="3.80.19.87"
