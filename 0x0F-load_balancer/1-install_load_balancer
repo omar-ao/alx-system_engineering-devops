@@ -22,5 +22,8 @@ backend web_servers
 	server 465573-web-02 100.26.142.144:80 check
 "
 printf %s "$configuration" >> /etc/haproxy/haproxy.cfg
-systemctl enable haproxy
-service haproxy start
+
+service haproxy restart
+
+# Enable HAproxy init script
+update-rc.d haproxy defaults
