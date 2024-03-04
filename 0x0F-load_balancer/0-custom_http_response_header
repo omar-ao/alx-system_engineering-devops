@@ -1,21 +1,28 @@
 #!/usr/bin/env bash
-# This script configures a new ubuntu machine
+# Configure new machine
+# shellcheck disable=SC2154
 
-#update the server and install nginx
+# Update and install nginx
 apt-get -y update
-apt-get install -y nginx
+apt-get -y install nginx
 
-echo "Hello World!" | tee /var/www/html/index.html
+# Changes the root page to contain the stril 'Hello World!'
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
 
-# Redirect /redirect_me to https://www.youtube.com/watch?v=QH2-TGUlwu4
-sudo sed -i '/server_name _;/a \ \ \ \ \ \ \ \ rewrite ^/redirect_me https://www.youtube.com/watch?v=QH3-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+# Add configuration for the redirect_me
+sudo sed -i '53i\location =  /redirect_me { return 301 http://youtube.com;}' /etc/nginx/sites-enabled/default
 
-# Create page containing Ceci n'est pas une page string
-echo "Ceci n'est pas une page" | tee /var/www/html/404.html >/dev/null
-sed -i '/rewrite.*/a \ \ \ \ \ \ \ \ \ error_page 404 /404.html;' /etc/nginx/sites-available/default
+# Add 404 error page
+printf "Ceci n'est pas une page\n" > /usr/share/nginx/html/404.html
+sudo sed -i '53i\       error_page 404 /404.html;\n             location = /404.html {\n                      root /usr/share/nginx/html;\n                   internal;}' /etc/nginx/sites-enabled/default
 
 # Add custom http response header
-sed -iE  "s/^[^#]location \/ {/&\n\t\tadd_header X-Served-By \$HOSTNAME;/" /etc/nginx/sites-available/default
+sudo sed -i "29i\       add_header X-Served-By \$HOSTNAME;" /etc/nginx/nginx.conf
+sudo sed -i "51i\       add_header X-Served-By \$HOSTNAME;" /etc/nginx/sites-enabled/default
 
-# Restart nginx
-service nginx reload
+# Restart the nginx service
+if [ "$(pgrep nginx)" ]; then
+        service nginx restart
+else
+        service nginx start
+fi
