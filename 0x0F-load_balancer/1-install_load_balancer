@@ -1,0 +1,7 @@
+#!/bin/bash
+# This script installs and configures HAproxy on your lb-01 server.
+
+apt-get update
+apt-get install -y haproxy=2.0.\*
+
+
