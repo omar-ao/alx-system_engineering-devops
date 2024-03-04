@@ -2,8 +2,7 @@
 # This script configures a new ubuntu machine
 
 # Add custom http response header
-sed -i "/error_page.*/a \ \ \ \ \ \ \ \ add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
+sed -i "38i\\        add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
 
 # Restart nginx
 service nginx reload
-
