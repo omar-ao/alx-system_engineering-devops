@@ -13,8 +13,8 @@ frontend main
 	
 backend web_servers
 	balance roundrobin
-	server 465573-web-01 3.80.19.87:80 check
-	server 465573-web-02 100.26.142.144:80 check
+	server 465573-web-01 100.25.222.12:80 check
+	server 465573-web-02 54.210.122.255:80 check
 "
 echo "$configuration" | tee -a /etc/haproxy/haproxy.cfg
 
