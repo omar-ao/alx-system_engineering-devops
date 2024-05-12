@@ -1,1 +1,28 @@
 #!/usr/bin/env bash
+# This script accepts two arguments `domain` and `subdomain` and dsiplays
+# Information about the subdomain if subdomain name given otherwise displays
+# Information about all the subdomain names of the given domain name
+# Output: The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
+
+www="www"
+lb="lb-01"
+web1="web-01"
+web2="web-02"
+
+print_subdomain_info () {
+	record=$(dig "$1" | grep -A1 'ANSWER SECTION:')
+	sub_d=$(echo $record | awk {'print $4'} | cut -d "." -f 1)
+	record_t=$(echo $record | awk {'print $7'})
+	dest=$(echo $record | awk {'print $8'})
+	echo "The subdomain $sub_d is a $record_t record and points to $dest"
+}
+
+if [[ $# -lt 2 ]]; then
+	print_subdomain_info "$www.$1"
+	print_subdomain_info "$lb.$1"
+	print_subdomain_info "$web1.$1"
+	print_subdomain_info "$web2.$1"
+else
+	subdomain=$"$2.$1"
+	print_subdomain_info "$subdomain"
+fi
