@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 """This is `0-subs.py` module. It contains one function
-`number_of_subscribers`"""
+`number_of_subscribers`
+"""
 import requests
 
 
@@ -12,11 +13,8 @@ def number_of_subscribers(subreddit):
     """
 
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {"User-Agent": "ALX/Holberton"}
+    headers = {"User-Agent": "Python scribt"}
     r = requests.get(url, headers=headers, allow_redirects=False)
     if r.ok:
-        subs = r.json().get('data').get('subscribers')
-        if subs:
-            return subs
-        return 0
+        return r.json().get('data').get('subscribers')
     return 0
