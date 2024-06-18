@@ -11,8 +11,12 @@ def top_ten(subreddit):
     headers = {"User-Agent": "Pyton script"}
     r = requests.get(url, headers=headers, allow_redirects=False)
     if not r.ok:
-        return 0
+        print('None')
+        return
     children = r.json().get('data').get('children')
+    if not children:
+        print('None')
+        return
     for child in children:
         post = child['data']
         print(post['title'])
