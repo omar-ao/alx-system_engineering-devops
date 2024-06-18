@@ -1,17 +1,22 @@
 #!/usr/bin/python3
 
 """This is `0-subs.py` module. It contains one function
-`number_of_subscribers"""
+`number_of_subscribers`"""
 import requests
 
 
 def number_of_subscribers(subreddit):
     """This is a function that  queries the Reddit API and returns
     the number of subscribers (not active users, total subscribers)
-    for a given subreddit"""
+    for a given subreddit
+    """
 
     url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    r = requests.get(url)
-    if r.status_code != 200:
+    headers = {"User-Agent": "ALX/Holberton"}
+    r = requests.get(url, headers=headers, allow_redirects=False)
+    if r.ok:
+        subs = r.json().get('data').get('subscribers')
+        if subs:
+            return subs
         return 0
-    return r.json()['data']['subscribers']
+    return 0
