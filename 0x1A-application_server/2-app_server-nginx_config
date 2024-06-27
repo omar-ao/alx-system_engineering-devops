@@ -17,8 +17,8 @@ server {
 	}
 
 	# Configuration for serving flask web app page
-    	location /airbnb-onepage {
-		proxy_pass http://127.0.0.1:5000;
+    	location = /airbnb-onepage/ {
+		proxy_pass http://127.0.0.1:5000/airbnb-onepage;
     	}
 
 }
